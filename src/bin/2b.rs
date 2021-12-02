@@ -45,12 +45,8 @@ impl<'a> FromIterator<&'a str> for Instruction {
     }
 }
 
-fn parse_line(line: &&str) -> Instruction {
-    line.split(' ').collect()
-}
-
 fn into_instruction_set(raw: &[&str]) -> Vec<Instruction> {
-    raw.iter().map(parse_line).collect()
+    raw.iter().map(|line| line.split(' ').collect()).collect()
 }
 
 fn follow_instructions(instructions: Vec<Instruction>) -> (u32, u32, u32) {
