@@ -49,14 +49,14 @@ fn into_instruction_set(raw: &[&str]) -> Vec<Instruction> {
     raw.iter().map(|line| line.split(' ').collect()).collect()
 }
 
-fn follow_instructions(instructions: Vec<Instruction>) -> (u32, u32, u32) {
+fn follow_instructions(instructions: &[Instruction]) -> (u32, u32, u32) {
     instructions
         .iter()
         .fold((0, 0, 0), |acc, instruction| instruction.move_sub(acc))
 }
 
 fn solve(raw: &[&str]) -> u32 {
-    let (x, y, _) = follow_instructions(into_instruction_set(raw));
+    let (x, y, _) = follow_instructions(&into_instruction_set(raw));
 
     x * y
 }
